@@ -86,7 +86,7 @@ def smoothing(image):
     #adding blur to the image with ksize = 15,15
     dst = cv2.GaussianBlur(image, (15, 15), cv2.BORDER_DEFAULT)
     cv2.imshow("Gaussian Smoothing",np.hstack((image, dst)))
-    save_image('solutions/smoothing.png', image)
+    save_image('solutions/smoothing.png', dst)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
