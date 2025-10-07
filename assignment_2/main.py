@@ -73,8 +73,15 @@ def hsv(image):
 
 def hue_shifted(image,emptyPictureArray, hue):
     emptyPictureArray[:] = image[:] #copying the image
-    # Shifting the hue with limit 0 to 255
-    shifted_image = np.clip(emptyPictureArray+hue, 0, 255).astype(np.uint8)
+
+    #wider dtype to avoid overflow
+    shifted = emptyPictureArray.astype(np.int16)
+
+    shifted += hue
+
+    #klipping the value to 0-255
+    shifted = np.clip(shifted, 0, 255)
+    shifted_image = shifted.astype(np.uint8)
 
     cv2.imshow('original', image)
     cv2.imshow('shifted', shifted_image)
